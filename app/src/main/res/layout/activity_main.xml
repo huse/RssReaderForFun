@@ -8,43 +8,171 @@
 
     <EditText
         android:id="@+id/textView1"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="http://feeds2.feedburner.com/androidcentral?format=xml"
-        />
+        android:text=""
+        android:gravity="left" />
+    <Button
+        android:id="@+id/button_go"
+        android:layout_width="50dp"
+        android:layout_height="50sp"
+        android:text="Go"
+        android:layout_toRightOf="@id/textView1"
+        android:layout_alignParentRight="true" />
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="50dp"
+        android:layout_height="50sp"
+        android:text="1"
+        android:layout_below="@id/textView1"/>
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="50dp"
+        android:layout_height="50sp"
+        android:text="2"
+        android:layout_below="@id/textView1"
+        android:layout_toRightOf="@id/button1"/>
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="50dp"
+        android:layout_height="50sp"
+        android:text="3"
+        android:layout_below="@id/textView1"
+        android:layout_toRightOf="@id/button2"/>
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="50dp"
+        android:layout_height="50sp"
+        android:text="4"
+        android:layout_below="@id/textView1"
+        android:layout_toRightOf="@id/button3"/>
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="50dp"
+        android:layout_height="50sp"
+        android:text="5"
+        android:layout_below="@id/textView1"
+        android:layout_toRightOf="@id/button4"/>
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="50dp"
+        android:layout_height="50sp"
+        android:text="6"
+        android:layout_below="@id/textView1"
+        android:layout_toRightOf="@id/button5"/>
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="50dp"
+        android:layout_height="50sp"
+        android:text="7"
+        android:layout_below="@id/textView1"
+        android:layout_toRightOf="@id/button6"/>
     <Button
         android:id="@+id/button11"
         android:layout_width="50dp"
         android:layout_height="50sp"
-        android:text="S"
-        android:layout_toRightOf="@id/textView1"/>
+        android:text="11"
+        android:layout_below="@+id/button1"/>
     <Button
-        android:id="@+id/buttonY"
+        android:id="@+id/button12"
         android:layout_width="50dp"
         android:layout_height="50sp"
-        android:text="Y"
+        android:text="12"
+        android:layout_below="@+id/button1"
+        android:layout_toRightOf="@id/button11"/>
+    <Button
+        android:id="@+id/button13"
+        android:layout_width="50dp"
+        android:layout_height="50sp"
+        android:text="13"
+        android:layout_below="@+id/button1"
+        android:layout_toRightOf="@id/button12"/>
+    <Button
+        android:id="@+id/button14"
+        android:layout_width="50dp"
+        android:layout_height="50sp"
+        android:text="14"
+        android:layout_below="@+id/button1"
+        android:layout_toRightOf="@id/button13"/>
+    <Button
+        android:id="@+id/button15"
+        android:layout_width="50dp"
+        android:layout_height="50sp"
+        android:text="15"
+        android:layout_below="@+id/button1"
+        android:layout_toRightOf="@id/button14"/>
+    <Button
+        android:id="@+id/button16"
+        android:layout_width="50dp"
+        android:layout_height="50sp"
+        android:text="16"
+        android:layout_below="@+id/button1"
+        android:layout_toRightOf="@id/button15"/>
+    <Button
+        android:id="@+id/button17"
+        android:layout_width="50dp"
+        android:layout_height="50sp"
+        android:text="17"
+        android:layout_below="@+id/button1"
+        android:layout_toRightOf="@id/button16"
+        />
+    <Button
+        android:id="@+id/button21"
+        android:layout_width="50dp"
+        android:layout_height="50sp"
+        android:text="21"
         android:layout_below="@id/button11"/>
     <Button
-        android:id="@+id/buttonG"
+        android:id="@+id/button22"
         android:layout_width="50dp"
         android:layout_height="50sp"
-        android:text="G"
+        android:text="22"
         android:layout_below="@id/button11"
-        android:layout_toRightOf="@id/buttonY"/>
+        android:layout_toRightOf="@id/button1"/>
     <Button
-        android:id="@+id/buttonB"
+        android:id="@+id/button23"
         android:layout_width="50dp"
         android:layout_height="50sp"
-        android:text="B"
+        android:text="23"
         android:layout_below="@id/button11"
-        android:layout_toRightOf="@id/buttonG"/>
+        android:layout_toRightOf="@id/button2"/>
+    <Button
+        android:id="@+id/button24"
+        android:layout_width="50dp"
+        android:layout_height="50sp"
+        android:text="24"
+        android:layout_below="@id/button11"
+        android:layout_toRightOf="@id/button3"/>
+    <Button
+        android:id="@+id/button25"
+        android:layout_width="50dp"
+        android:layout_height="50sp"
+        android:text="25"
+        android:layout_below="@id/button11"
+        android:layout_toRightOf="@id/button4"/>
+    <Button
+        android:id="@+id/button26"
+        android:layout_width="50dp"
+        android:layout_height="50sp"
+        android:text="26"
+        android:layout_below="@id/button11"
+        android:layout_toRightOf="@id/button5"/>
+    <Button
+        android:id="@+id/button27"
+        android:layout_width="50dp"
+        android:layout_height="50sp"
+        android:text="27"
+        android:layout_below="@id/button11"
+        android:layout_toRightOf="@id/button6"/>
+
     <ListView
+
         android:id="@+id/listMainView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@id/buttonY">
+        android:layout_below="@id/button21">
     </ListView>
 </RelativeLayout>
