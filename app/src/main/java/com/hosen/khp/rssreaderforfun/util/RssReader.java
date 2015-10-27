@@ -1,5 +1,7 @@
 package com.hosen.khp.rssreaderforfun.util;
 
+import android.util.Log;
+
 import com.hosen.khp.rssreaderforfun.data.RssItem;
 
 import java.util.List;
@@ -25,15 +27,21 @@ public class RssReader {
      * @return
      */
     public List<RssItem> getItems() throws Exception {
-        // At first we need to get an SAX Parser Factory object
-        SAXParserFactory factory = SAXParserFactory.newInstance();
-        // Using factory we create a new SAX Parser instance
-        SAXParser saxParser = factory.newSAXParser();
-        // We need the SAX parser handler object
-        RssParseHandler handler = new RssParseHandler();
-        // We call the method parsing our RSS Feed
-        saxParser.parse(rssUrl, handler);
-        // The result of the parsing process is being stored in the handler object
-        return handler.getItems();
+        try {
+            // At first we need to get an SAX Parser Factory object
+            SAXParserFactory factory = SAXParserFactory.newInstance();
+            // Using factory we create a new SAX Parser instance
+            SAXParser saxParser = factory.newSAXParser();
+            // We need the SAX parser handler object
+            RssParseHandler handler = new RssParseHandler();
+            // We call the method parsing our RSS Feed
+            saxParser.parse(rssUrl, handler);
+            // The result of the parsing process is being stored in the handler object
+            return handler.getItems();
+        } catch (Exception e) {
+            Log.e("getItemMethod", e.getMessage());
+        }
+        return null;
     }
+
 }

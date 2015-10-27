@@ -1,4 +1,5 @@
 package com.hosen.khp.rssreaderforfun;
+
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -8,11 +9,17 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
+
 import com.hosen.khp.rssreaderforfun.data.RssItem;
 import com.hosen.khp.rssreaderforfun.listeners.ListListener;
 import com.hosen.khp.rssreaderforfun.util.RssReader;
 
 import java.util.List;
+
+
+
+
 
 /**
  * Main application activity.
@@ -56,7 +63,7 @@ public class MainActivity extends Activity {
                 task = new GetRSSDataTask();
                 try{
                 task.execute(variable);
-                Log.d("RssReader By Button", Thread.currentThread().getName());
+                Log.d("RssReaderByButton", Thread.currentThread().getName());
                 }catch (Exception e){
 
                 }
@@ -70,10 +77,12 @@ public class MainActivity extends Activity {
                 String variable = "http://news.yahoo.com/rss/";
                 task = new GetRSSDataTask();
                 try {
+                    Toast.makeText(getApplicationContext(), "http://news.yahoo.com/rss/", Toast.LENGTH_SHORT).show();
                     task.execute(variable);
-                    Log.d("RssReader By ButtonY", Thread.currentThread().getName());
-                } catch (Exception e) {
+                    Log.d("RssReaderByButtonY", Thread.currentThread().getName());
 
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -82,12 +91,12 @@ public class MainActivity extends Activity {
         buttonGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String variable = "http://news.google.com/rss/";
+                String variable = "https://news.google.com/news?cf=all&hl=en&pz=1&ned=us&output=rss";
 
                 try {
                     task = new GetRSSDataTask();
                     task.execute(variable);
-                    Log.d("RssReader By ButtonY", Thread.currentThread().getName());
+                    Log.d("RssReaderByButtonY", Thread.currentThread().getName());
 
                 } catch (Exception e) {
 
@@ -101,13 +110,19 @@ public class MainActivity extends Activity {
         buttonBing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String variable = "http://api.search.live.com/rss.aspx?source=web&query=sushi+los%20angeles";
-                task = new GetRSSDataTask();
+
                 try{
-                task.execute(variable);
-                Log.d("RssReader By ButtonY", Thread.currentThread().getName());
+
+                    Log.d("RssReaderByButtonBStart", Thread.currentThread().getName());
+                    String variable = "https://www.bing.com/news/?format=RSS";
+                    task = new GetRSSDataTask();
+                    //Toast.makeText(getApplicationContext(), "Bing", Toast.LENGTH_SHORT).show();
+                    task.execute(variable);
+
+                    Log.d("RssReaderByButtonB", Thread.currentThread().getName());
             }catch (Exception e){
 
+                    Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
             }
             }
 
@@ -118,10 +133,12 @@ public class MainActivity extends Activity {
         @Override
         protected List<RssItem> doInBackground(String... urls) {
 
-            // Debug the task thread name
-            Log.d("RssReader", Thread.currentThread().getName());
+
 
             try {
+                //Toast.makeText(getApplicationContext(), "doInBackground", Toast.LENGTH_SHORT).show();
+                // Debug the task thread name
+                Log.d("RssReaderdoInBackground", Thread.currentThread().getName());
                 // Create RSS reader
                 RssReader rssReader = new RssReader(urls[0]);
 
@@ -129,7 +146,7 @@ public class MainActivity extends Activity {
                 return rssReader.getItems();
 
             } catch (Exception e) {
-                Log.e("RssReader", e.getMessage());
+                Log.e("RssReaderDOINBACKGROUND", e.getMessage());
             }
 
             return null;
@@ -149,6 +166,8 @@ public class MainActivity extends Activity {
             // Set list view item click listener
             itRRItems.setOnItemClickListener(new ListListener(result, local));
         }
+
+
     }
 }
 
