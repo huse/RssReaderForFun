@@ -1,0 +1,24 @@
+ xmlns:ads="http://schemas.android.com/apk/res-auto"
+ <!--    <com.google.android.gms.ads.AdView
+         android:id="@+id/adView"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_centerHorizontal="true"
+         android:layout_alignParentBottom="true"
+         ads:adSize="BANNER"
+         ads:adUnitId="ca-app-pub-6744562395705685/7534033855">
+     </com.google.android.gms.ads.AdView>-->
+
+
+     // this code is for banner advertise
+             /*AdView mAdView = new AdView(this);
+             mAdView.setAdUnitId("ca-app-pub-6744562395705685/7534033855");
+             mAdView.setAdSize(AdSize.SMART_BANNER);
+             AdRequest adRequest2 = new AdRequest.Builder().addTestDevice("YOUR_DEVICE_HASH").build();
+             LayoutAddAdView(mAdView, RelativeLayout.ALIGN_PARENT_LEFT, 0, (twoNineHeight + 6 * nineHeight) + (height / 592), 0, 0);
+
+             try{mAdView.loadAd(adRequest2);
+             }
+             catch(Exception e){
+                 Log.v("adError", "Error in loading ad");
+             }*/
