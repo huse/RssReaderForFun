@@ -1,0 +1,3 @@
+List<RssItem> result) {
+
+        String values = result.get(0).toString();
