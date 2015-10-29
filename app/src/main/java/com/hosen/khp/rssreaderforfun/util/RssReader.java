@@ -46,7 +46,7 @@ public class RssReader  {
         } catch (Exception e) {
             Log.e("getItemMethod", e.getMessage());
 
-            MainActivity.toastMessage("Wrong URL, Check internet connection");
+             MainActivity.sendError(e);
         }
             return handler.getItems();
 

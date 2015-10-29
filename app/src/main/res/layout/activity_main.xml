@@ -25,25 +25,26 @@
 <LinearLayout
     android:id="@+id/linearlayout1"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="50dp"
     android:orientation="horizontal">
     <EditText
         android:id="@+id/textView1"
         android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:text="fdgsdfgsdfg"
+        android:layout_height="match_parent"
         android:gravity="left"
         android:windowSoftInputMode="stateHidden"
+        android:hint="Put RSS address here"
         android:layout_weight="1"
         />
-    <Button
+    <ImageButton
         android:id="@+id/button_go"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:text="Go"
         android:layout_toRightOf="@id/textView1"
         android:layout_alignParentRight="true"
-        android:onClick="onClick"/>
+        android:onClick="onClick"
+        android:background="@mipmap/go1"/>
 
 </LinearLayout>
     <LinearLayout
@@ -52,7 +53,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_below="@id/linearlayout1">
-        <Button
+        <ImageButton
             android:id="@+id/button1"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -60,8 +61,9 @@
             android:layout_below="@id/linearlayout1"
             android:layout_weight="1"
             android:onClick="onClick"
-            android:drawableLeft="@mipmap/yahoo"/>
-        <Button
+            android:background="@mipmap/yahoo" />
+
+        <ImageButton
             android:id="@+id/button2"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -69,8 +71,9 @@
             android:layout_below="@id/linearlayout1"
             android:layout_toRightOf="@id/button1"
             android:layout_weight="1"
-            android:onClick="onClick" />
-        <Button
+            android:onClick="onClick"
+            android:background="@mipmap/espn" />
+        <ImageButton
             android:id="@+id/button3"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -78,8 +81,9 @@
             android:layout_below="@id/linearlayout1"
             android:layout_toRightOf="@id/button2"
             android:layout_weight="1"
-            android:onClick="onClick" />
-        <Button
+            android:onClick="onClick"
+            android:background="@mipmap/bbc" />
+        <ImageButton
             android:id="@+id/button4"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -87,8 +91,9 @@
             android:layout_below="@id/linearlayout1"
             android:layout_toRightOf="@id/button3"
             android:layout_weight="1"
-            android:onClick="onClick" />
-        <Button
+            android:onClick="onClick"
+            android:background="@mipmap/cnn" />
+        <ImageButton
             android:id="@+id/button5"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -96,8 +101,9 @@
             android:layout_below="@id/linearlayout1"
             android:layout_toRightOf="@id/button4"
             android:layout_weight="1"
-            android:onClick="onClick" />
-        <Button
+            android:onClick="onClick"
+            android:background="@mipmap/msn" />
+        <ImageButton
             android:id="@+id/button6"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -105,8 +111,9 @@
             android:layout_below="@id/linearlayout1"
             android:layout_toRightOf="@id/button5"
             android:layout_weight="1"
-            android:onClick="onClick" />
-        <Button
+            android:onClick="onClick"
+            android:background="@mipmap/reuters" />
+        <ImageButton
             android:id="@+id/button7"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -114,7 +121,8 @@
             android:layout_below="@id/linearlayout1"
             android:layout_toRightOf="@id/button6"
             android:layout_weight="1"
-            android:onClick="onClick" />
+            android:onClick="onClick"
+            android:background="@mipmap/disney" />
     </LinearLayout>
 
 
@@ -126,15 +134,16 @@
         android:orientation="horizontal"
         android:layout_below="@id/linearlayout2">
 
-        <Button
+        <ImageButton
             android:id="@+id/button11"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:text="11"
             android:layout_below="@+id/button1"
             android:layout_weight="1"
-            android:onClick="onClick" />
-        <Button
+            android:onClick="onClick"
+            android:background="@mipmap/benz" />
+        <ImageButton
             android:id="@+id/button12"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -142,8 +151,9 @@
             android:layout_below="@+id/button1"
             android:layout_toRightOf="@id/button11"
             android:layout_weight="1"
-            android:onClick="onClick" />
-        <Button
+            android:onClick="onClick"
+            android:background="@mipmap/porche" />
+        <ImageButton
             android:id="@+id/button13"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -151,8 +161,9 @@
             android:layout_below="@+id/button1"
             android:layout_toRightOf="@id/button12"
             android:layout_weight="1"
-            android:onClick="onClick" />
-        <Button
+            android:onClick="onClick"
+            android:background="@mipmap/lamborgini" />
+        <ImageButton
             android:id="@+id/button14"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -160,8 +171,9 @@
             android:layout_below="@+id/button1"
             android:layout_toRightOf="@id/button13"
             android:layout_weight="1"
-            android:onClick="onClick" />
-        <Button
+            android:onClick="onClick"
+            android:background="@mipmap/lexus2" />
+        <ImageButton
             android:id="@+id/button15"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -169,8 +181,9 @@
             android:layout_below="@+id/button1"
             android:layout_toRightOf="@id/button14"
             android:layout_weight="1"
-            android:onClick="onClick" />
-        <Button
+            android:onClick="onClick"
+            android:background="@mipmap/gm" />
+        <ImageButton
             android:id="@+id/button16"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -178,8 +191,9 @@
             android:layout_below="@+id/button1"
             android:layout_toRightOf="@id/button15"
             android:layout_weight="1"
-            android:onClick="onClick" />
-        <Button
+            android:onClick="onClick"
+            android:background="@mipmap/boxoffice" />
+        <ImageButton
             android:id="@+id/button17"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -187,7 +201,8 @@
             android:layout_below="@+id/button1"
             android:layout_toRightOf="@id/button16"
             android:layout_weight="1"
-            android:onClick="onClick" />
+            android:onClick="onClick"
+            android:background="@mipmap/billboard" />
 
     </LinearLayout>
 
@@ -198,15 +213,16 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_below="@id/linearlayout3">
-        <Button
+        <ImageButton
             android:id="@+id/button21"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:text="21"
             android:layout_below="@id/button11"
             android:layout_weight="1"
-            android:onClick="onClick" />
-        <Button
+            android:onClick="onClick"
+            android:background="@mipmap/microsoft" />
+        <ImageButton
             android:id="@+id/button22"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -214,8 +230,9 @@
             android:layout_below="@id/button11"
             android:layout_toRightOf="@id/button1"
             android:layout_weight="1"
-            android:onClick="onClick" />
-        <Button
+            android:onClick="onClick"
+            android:background="@mipmap/directv2" />
+        <ImageButton
             android:id="@+id/button23"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -223,8 +240,9 @@
             android:layout_below="@id/button11"
             android:layout_toRightOf="@id/button2"
             android:layout_weight="1"
-            android:onClick="onClick" />
-        <Button
+            android:onClick="onClick"
+            android:background="@mipmap/cisco" />
+        <ImageButton
             android:id="@+id/button24"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -232,8 +250,9 @@
             android:layout_below="@id/button11"
             android:layout_toRightOf="@id/button3"
             android:layout_weight="1"
-            android:onClick="onClick" />
-        <Button
+            android:onClick="onClick"
+            android:background="@mipmap/att" />
+        <ImageButton
             android:id="@+id/button25"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -241,8 +260,9 @@
             android:layout_below="@id/button11"
             android:layout_toRightOf="@id/button4"
             android:layout_weight="1"
-            android:onClick="onClick" />
-        <Button
+            android:onClick="onClick"
+            android:background="@mipmap/apple" />
+        <ImageButton
             android:id="@+id/button26"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -250,8 +270,9 @@
             android:layout_below="@id/button11"
             android:layout_toRightOf="@id/button5"
             android:layout_weight="1"
-            android:onClick="onClick" />
-        <Button
+            android:onClick="onClick"
+            android:background="@mipmap/sony" />
+        <ImageButton
             android:id="@+id/button27"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -259,7 +280,8 @@
             android:layout_below="@id/button11"
             android:layout_toRightOf="@id/button6"
             android:layout_weight="1"
-            android:onClick="onClick" />
+            android:onClick="onClick"
+            android:background="@mipmap/oracle2" />
     </LinearLayout>
 
 

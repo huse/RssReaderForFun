@@ -1,6 +1,8 @@
 package com.hosen.khp.rssreaderforfun;
 
 import android.app.Activity;
+import android.content.Context;
+import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +19,7 @@ import com.hosen.khp.rssreaderforfun.data.RssItem;
 import com.hosen.khp.rssreaderforfun.listeners.ListListener;
 import com.hosen.khp.rssreaderforfun.util.RssReader;
 
+import java.net.InetAddress;
 import java.util.List;
 
 
@@ -35,21 +38,27 @@ public class MainActivity extends Activity {
     GetRSSDataTask task;
     String urlString="";
     String address;
-    private String[] listData={"dddd","ffff", "hhhh"};
+
     ImageView imagview;
     String yahoo= "http://news.yahoo.com/rss/";
-    String google = "https://news.google.com/news?cf=all&hl=en&pz=1&ned=us&output=rss";
-    String bing = "https://www.bing.com/news/search?q=developer&go=Submit&qs=n&form=NWBQBN&pq=developer&sc=8-9&sp=-1&sk=&format=RSS";
+   // String google = "https://news.google.com/news?cf=all&hl=en&pz=1&ned=us&output=rss";
+   // String google = "https://news.google.com/news/feeds?output=rss&q=whatever%20%E2%80%93";
+   // String google = "https://news.google.com/news/";
+   // String google =  "https://news.google.com/news/feeds?cf=all&ned=us&hl=en&q=education&output=rss";
+    String espn =  "http://sports.espn.go.com/espn/rss/news";
+    String bbc = "http://feeds.bbci.co.uk/news/world/rss.xml#";
     String cnn = "http://rss.cnn.com/rss/cnn_topstories.rss";
     String msn = "http://rss.msn.com/";
     String reuters = "http://feeds.reuters.com/Reuters/domesticNews?format=xml";
+    String disney = "http://feeds.feedburner.com/disney-updates?format=xml";
 
     String mercedes = "https://www.mercedes-benz.com/en/ressort/mercedes-benz/lifestyle/feed/";
      String porsche = "http://newsroom.porsche.com/rss/en/index.rss";
     String lamborghini = "http://www.lamborghini.com/en/feeds/rss20/lamborghini-news/?cHash=ccbb11a6c6bc01e58261d5cec2a6102d";
     String lexus =  "http://feeds.feedburner.com/lexus-int/news";
     String gm =  "http://media.gm.com/media/us/en/gm/news/jcr:content/righttabsocialmedia/rss.newsrss.html";
-
+    String boxoffice =  "http://pro.boxoffice.com/rss-feeds/news";
+    String billboard =  "http://www.billboard.com/articles/rss.xml";
 
     String microsoft = "http://sxp.microsoft.com/feeds/3.0?tags=msit";
     String directv = "http://forums.directv.com/community/feeds/allcontent?community=10177903";
@@ -57,18 +66,18 @@ public class MainActivity extends Activity {
     String att =  "http://feeds.feedburner.com/AttAllCategoriesRssFeeds";
     String apple = "http://images.apple.com/main/rss/hotnews/hotnews.rss";
     String Sony = "http://www.sony.net/SonyInfo/News/Press/data/pressrelease_for_top.xml";
+    String oracle = "http://www.oracle.com/ocom/groups/public/@ocom/documents/webcontent/196280.xml";
 
 
+
+    public static void toastMessage(String s){
+        //Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+      //  editText.setText("Date");
+    }
 
     /**
      * This method creates main application view
      */
-    public static void toastMessage(String s){
-        //Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
-
-    }
-
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -79,56 +88,22 @@ public class MainActivity extends Activity {
         AdView mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
-
+        imagview = (ImageView)findViewById(R.id.postThumb);
         // Set reference to this activity
         local = this;
 
         task = new GetRSSDataTask();
-
+if (isInternetAvailable()){
+    Toast.makeText(getApplicationContext(), "Check internet connection", Toast.LENGTH_LONG).show();
+}
         // Start download RSS task
         editText = (EditText)findViewById(R.id.textView1);
-       // editText.setText("http://www.itcuties.com/feed/");
+
         editText.setSelection(editText.getText().length());
-        task.execute("http://feeds2.feedburner.com/androidcentral?format=xml");
+        task.execute("http://news.yahoo.com/rss/");
 
         // Debug the thread name
         Log.d("RssReader", Thread.currentThread().getName());
-
-        buttonGo = (Button)findViewById(R.id.button_go);
-        button1 = (Button)findViewById(R.id.button1);
-        button2 = (Button)findViewById(R.id.button2);
-        button3 = (Button)findViewById(R.id.button3);
-        button4 = (Button)findViewById(R.id.button4);
-        button5 = (Button)findViewById(R.id.button5);
-        button6 = (Button)findViewById(R.id.button6);
-        button7 = (Button)findViewById(R.id.button7);
-        button11 = (Button)findViewById(R.id.button11);
-        button12 = (Button)findViewById(R.id.button12);
-        button13 = (Button)findViewById(R.id.button13);
-        button14 = (Button)findViewById(R.id.button14);
-        button15 = (Button)findViewById(R.id.button15);
-        button16 = (Button)findViewById(R.id.button16);
-        button17 = (Button)findViewById(R.id.button17);
-        button21 = (Button)findViewById(R.id.button21);
-        button22 = (Button)findViewById(R.id.button22);
-        button23 = (Button)findViewById(R.id.button23);
-        button24 = (Button)findViewById(R.id.button24);
-        button25 = (Button)findViewById(R.id.button25);
-        button26 = (Button)findViewById(R.id.button26);
-        button27 = (Button)findViewById(R.id.button27);
-        buttonGo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                urlString = editText.getText().toString();
-                task = new GetRSSDataTask();
-
-                task.execute(urlString);
-                Log.d("RssReaderByButton", Thread.currentThread().getName());
-
-            }
-
-        });
-
 
     }
     public void onClick(View v) {
@@ -142,10 +117,10 @@ public class MainActivity extends Activity {
                 taskMethod(yahoo);
                 break;
             case R.id.button2:
-                taskMethod(google);
+                taskMethod(espn);
                 break;
             case R.id.button3:
-                taskMethod(bing);
+                taskMethod(bbc);
                 break;
             case R.id.button4:
                 taskMethod(cnn);
@@ -157,7 +132,7 @@ public class MainActivity extends Activity {
                 taskMethod(reuters);
                 break;
             case R.id.button7:
-                taskMethod(msn);
+                taskMethod(disney);
                 break;
             case R.id.button11:
                 taskMethod(mercedes);
@@ -175,10 +150,10 @@ public class MainActivity extends Activity {
                 taskMethod(gm);
                 break;
             case R.id.button16:
-                taskMethod(msn);
+                taskMethod(boxoffice);
                 break;
             case R.id.button17:
-                taskMethod(msn);
+                taskMethod(billboard);
                 break;
             case R.id.button21:
                 taskMethod(microsoft);
@@ -199,7 +174,7 @@ public class MainActivity extends Activity {
                 taskMethod(Sony);
                 break;
             case R.id.button27:
-                taskMethod(msn);
+                taskMethod(oracle);
                 break;
 
         }
@@ -207,18 +182,50 @@ public class MainActivity extends Activity {
 
 
     }
-
+    static Boolean runBoolean =true;
+public static void sendError(Exception e){
+    runBoolean=false;
+    Log.e("IgottheErrormain", e.getMessage());
+}
     private void taskMethod(String s) {
-        Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
-        urlString = s;
-       imagview = (ImageView)findViewById(R.id.postThumb);
-        editText.setText(s);
-       imagview.setImageResource(R.mipmap.yahoo);
-        task = new GetRSSDataTask();
-        task.execute(s);
-        Log.d("RssReaderBu", Thread.currentThread().getName());
-    }
+        if (!isInternetAvailable()){
+            urlString = s;
+            editText.setText(s);
+            // setting image view in this step cause error.
+            // imagview.setImageResource(R.mipmap.pro);
+            task = new GetRSSDataTask();
+            task.execute(s);
+            editText.setSelection(editText.getText().length());
+            if (runBoolean==false){
+                Toast.makeText(getApplicationContext(), "Error, check connection and URL", Toast.LENGTH_SHORT).show();
+            }
+            Log.d("RssReaderBu", Thread.currentThread().getName());
+            runBoolean=true;
+        }else{
+            Toast.makeText(getApplicationContext(), "Check internet connection", Toast.LENGTH_SHORT).show();
+        }
 
+    }
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        return cm.getActiveNetworkInfo() != null;
+    }
+    public boolean isInternetAvailable() {
+        try {
+            InetAddress ipAddr = InetAddress.getByName("www.google.com"); //You can replace it with your name
+
+            if (ipAddr.equals("")) {
+                return false;
+            } else {
+                return true;
+            }
+
+        } catch (Exception e) {
+            return false;
+        }
+
+    }
     private class GetRSSDataTask extends AsyncTask<String, Void, List<RssItem> > {
         @Override
         protected List<RssItem> doInBackground(String... urls) {
