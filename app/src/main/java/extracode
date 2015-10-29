@@ -22,3 +22,7 @@
              catch(Exception e){
                  Log.v("adError", "Error in loading ad");
              }*/
+
+
+                    android:src="@drawable/postthumb_loading"
+

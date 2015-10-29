@@ -11,14 +11,13 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.hosen.khp.rssreaderforfun.data.RssItem;
 import com.hosen.khp.rssreaderforfun.listeners.ListListener;
 import com.hosen.khp.rssreaderforfun.util.RssReader;
 
 import java.util.List;
-
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 
 
 
@@ -37,7 +36,7 @@ public class MainActivity extends Activity {
     String urlString="";
     String address;
     private String[] listData={"dddd","ffff", "hhhh"};
-    ImageView imagview = (ImageView) findViewById(R.id.icon);
+    ImageView imagview;
     String yahoo= "http://news.yahoo.com/rss/";
     String google = "https://news.google.com/news?cf=all&hl=en&pz=1&ned=us&output=rss";
     String bing = "https://www.bing.com/news/search?q=developer&go=Submit&qs=n&form=NWBQBN&pq=developer&sc=8-9&sp=-1&sk=&format=RSS";
@@ -212,7 +211,9 @@ public class MainActivity extends Activity {
     private void taskMethod(String s) {
         Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
         urlString = s;
-        imagview.setImageBitmap( res/drawable/postthumb_loading);
+       imagview = (ImageView)findViewById(R.id.postThumb);
+        editText.setText(s);
+       imagview.setImageResource(R.mipmap.yahoo);
         task = new GetRSSDataTask();
         task.execute(s);
         Log.d("RssReaderBu", Thread.currentThread().getName());
@@ -258,7 +259,7 @@ public class MainActivity extends Activity {
                 i++;
             }
 
-           MySimpleArrayAdapter itemAdapter = new MySimpleArrayAdapter(local, rr);
+           MySimpleArrayAdapter itemAdapter = new MySimpleArrayAdapter(local, rr,urlString);
             itRRItems.setAdapter(itemAdapter);
             itRRItems.setOnItemClickListener(new ListListener(result, local));
 
