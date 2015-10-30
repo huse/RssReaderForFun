@@ -3,6 +3,7 @@ package com.hosen.khp.rssreaderforfun;
 import android.app.Activity;
 import android.content.Context;
 import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,7 +20,6 @@ import com.hosen.khp.rssreaderforfun.data.RssItem;
 import com.hosen.khp.rssreaderforfun.listeners.ListListener;
 import com.hosen.khp.rssreaderforfun.util.RssReader;
 
-import java.net.InetAddress;
 import java.util.List;
 
 
@@ -30,6 +30,7 @@ import java.util.List;
  */
 public class MainActivity extends Activity {
 
+    private static final String TAG = "MainActivityw";
     // A reference to the local object
     private MainActivity local;
     EditText editText;
@@ -93,8 +94,9 @@ public class MainActivity extends Activity {
         local = this;
 
         task = new GetRSSDataTask();
-if (isInternetAvailable()){
+if (!isAvailable()){
     Toast.makeText(getApplicationContext(), "Check internet connection", Toast.LENGTH_LONG).show();
+    Log.d("NoNetwork", Thread.currentThread().getName());
 }
         // Start download RSS task
         editText = (EditText)findViewById(R.id.textView1);
@@ -188,44 +190,52 @@ public static void sendError(Exception e){
     Log.e("IgottheErrormain", e.getMessage());
 }
     private void taskMethod(String s) {
-        if (!isInternetAvailable()){
+
+        if (isAvailable()){
             urlString = s;
             editText.setText(s);
-            // setting image view in this step cause error.
-            // imagview.setImageResource(R.mipmap.pro);
+
             task = new GetRSSDataTask();
             task.execute(s);
             editText.setSelection(editText.getText().length());
             if (runBoolean==false){
                 Toast.makeText(getApplicationContext(), "Error, check connection and URL", Toast.LENGTH_SHORT).show();
             }
-            Log.d("RssReaderBu", Thread.currentThread().getName());
+            Log.d("RssReaderoclick", Thread.currentThread().getName());
             runBoolean=true;
         }else{
             Toast.makeText(getApplicationContext(), "Check internet connection", Toast.LENGTH_SHORT).show();
+            Log.d("NoNetwork", Thread.currentThread().getName());
         }
 
     }
     private boolean isNetworkConnected() {
-        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
 
-        return cm.getActiveNetworkInfo() != null;
     }
-    public boolean isInternetAvailable() {
-        try {
-            InetAddress ipAddr = InetAddress.getByName("www.google.com"); //You can replace it with your name
 
-            if (ipAddr.equals("")) {
-                return false;
+    public Boolean isAvailable() {
+        if (isNetworkConnected()){
+        try {
+            Process p1 = java.lang.Runtime.getRuntime().exec("ping -c 1    www.google.com");
+            int returnVal = p1.waitFor();
+            boolean reachable = (returnVal == 0);
+            if (reachable) {
+                System.out.println("Internet access");
+                return reachable;
             } else {
-                return true;
+                System.out.println("No Internet access");
             }
 
-
         } catch (Exception e) {
-            return false;
-        }
 
+            e.printStackTrace();
+        }
+    }
+        return false;
     }
     private class GetRSSDataTask extends AsyncTask<String, Void, List<RssItem> > {
         @Override
@@ -234,7 +244,7 @@ public static void sendError(Exception e){
 
 
             try {
-                //Toast.makeText(getApplicationContext(), "doInBackground", Toast.LENGTH_SHORT).show();
+
                 // Debug the task thread name
                 Log.d("RssReaderdoInBackground", Thread.currentThread().getName());
                 // Create RSS reader
