@@ -2,6 +2,7 @@ package com.hosen.khp.rssreaderforfun;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -34,10 +35,11 @@ public class MainActivity extends Activity {
     // A reference to the local object
     private MainActivity local;
     EditText editText;
+    ListView listView;
     Button buttonGo, button1, button2, button3,button4,button5,button6,button7,button11,button12,button13,button14,button15,button16
             ,button17,button21,button22,button23,button24,button25,button26,button27;
     GetRSSDataTask task;
-    String urlString="";
+    static String urlString="http://rss.cnn.com/rss/cnn_topstories.rss";
     String address;
 
     ImageView imagview;
@@ -85,6 +87,9 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         // Set view
         setContentView(R.layout.activity_main);
+
+       //InitializeUI();
+
         // This code is for add banner
         AdView mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
@@ -95,7 +100,10 @@ public class MainActivity extends Activity {
 
         editText = (EditText)findViewById(R.id.textView1);
         editText.setSelection(editText.getText().length());
-        taskMethod("http://news.yahoo.com/rss/");
+
+        taskMethod(urlString);
+        System.out.println(urlString);
+        //InitializeUI();
         //task = new GetRSSDataTask();
 /*if (!isNetworkConnected()){
     Toast.makeText(getApplicationContext(), "Check internet connection", Toast.LENGTH_LONG).show();
@@ -251,6 +259,22 @@ public static void sendError(Exception e){
     }
         return false;
     }
+    public void InitializeUI()
+    {
+        //get views from ID's
+        this.editText = (EditText) this.findViewById(R.id.textView1);
+        this.listView= (ListView) this.findViewById(R.id.listMainView);
+
+        //etc... hook up click listeners, whatever you need from the Views
+    }
+    @Override
+    public void onConfigurationChanged(Configuration newConfig)
+    {
+        super.onConfigurationChanged(newConfig);
+        setContentView(R.layout.activity_main);
+
+        InitializeUI();
+    }
     private class GetRSSDataTask extends AsyncTask<String, Void, List<RssItem> > {
         @Override
         protected List<RssItem> doInBackground(String... urls) {
@@ -279,6 +303,7 @@ public static void sendError(Exception e){
 
             // Get a ListView from main view
            ListView itRRItems = (ListView) findViewById(R.id.listMainView);
+
             int j=0;
             for(RssItem r : result){
                 j++;
@@ -290,7 +315,7 @@ public static void sendError(Exception e){
               rr[i]= r.toString();
                 i++;
             }
-
+            listView=itRRItems;
            MySimpleArrayAdapter itemAdapter = new MySimpleArrayAdapter(local, rr,urlString);
             itRRItems.setAdapter(itemAdapter);
             itRRItems.setOnItemClickListener(new ListListener(result, local));

@@ -35,7 +35,6 @@
         android:windowSoftInputMode="stateHidden"
         android:hint="Put RSS address here"
         android:layout_weight="1"
-        android:text="http://images.apple.com/main/rss/hotnews/hotnews.rss"
         />
     <ImageButton
         android:id="@+id/button_go"
@@ -153,17 +152,6 @@
             android:layout_weight="1"
             android:onClick="onClick"
             android:background="@mipmap/cisco" />
-    </LinearLayout>
-
-
-
-    <LinearLayout
-        android:id="@+id/linearlayout3"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_below="@id/linearlayout2">
-
         <ImageButton
             android:id="@+id/button11"
             android:layout_width="30dp"
@@ -273,6 +261,18 @@
             android:layout_weight="1"
             android:onClick="onClick"
             android:background="@mipmap/oracle2" />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/linearlayout3"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/linearlayout2">
+
+
 
     </LinearLayout>
 
