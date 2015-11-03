@@ -128,7 +128,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:text="21"
-
+            android:layout_below="@id/button11"
             android:layout_weight="1"
             android:onClick="onClick"
             android:background="@mipmap/microsoft" />
@@ -137,7 +137,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:text="22"
-
+            android:layout_below="@id/button11"
             android:layout_toRightOf="@id/button1"
             android:layout_weight="1"
             android:onClick="onClick"
@@ -147,22 +147,21 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:text="23"
-
+            android:layout_below="@id/button11"
             android:layout_toRightOf="@id/button2"
             android:layout_weight="1"
             android:onClick="onClick"
             android:background="@mipmap/cisco" />
-    </LinearLayout>
-
-
-
-    <LinearLayout
-        android:id="@+id/linearlayout3"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_below="@id/linearlayout2">
-
+        <ImageButton
+            android:id="@+id/button24"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:text="24"
+            android:layout_below="@id/button11"
+            android:layout_toRightOf="@id/button3"
+            android:layout_weight="1"
+            android:onClick="onClick"
+            android:background="@mipmap/att" />
         <ImageButton
             android:id="@+id/button11"
             android:layout_width="30dp"
@@ -233,16 +232,6 @@
             android:onClick="onClick"
             android:background="@mipmap/billboard" />
         <ImageButton
-            android:id="@+id/button24"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:text="24"
-            android:layout_below="@id/button11"
-            android:layout_toRightOf="@id/button3"
-            android:layout_weight="1"
-            android:onClick="onClick"
-            android:background="@mipmap/att" />
-        <ImageButton
             android:id="@+id/button25"
             android:layout_width="30dp"
             android:layout_height="30dp"
@@ -272,8 +261,9 @@
             android:layout_weight="1"
             android:onClick="onClick"
             android:background="@mipmap/oracle2" />
-
     </LinearLayout>
+
+
 
     <ListView
 
@@ -283,14 +273,15 @@
 
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@id/linearlayout3">
+        android:layout_below="@id/linearlayout2">
     </ListView>
 
 </RelativeLayout>
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/firstrelative"
+        android:layout_height="fill_parent"
+
         android:layout_weight="1">
         <com.google.android.gms.ads.AdView
             android:id="@+id/adView"

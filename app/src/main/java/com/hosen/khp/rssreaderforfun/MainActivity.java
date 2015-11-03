@@ -21,7 +21,7 @@ import com.hosen.khp.rssreaderforfun.listeners.ListListener;
 import com.hosen.khp.rssreaderforfun.util.RssReader;
 
 import java.util.List;
-
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -93,19 +93,22 @@ public class MainActivity extends Activity {
         // Set reference to this activity
         local = this;
 
-        task = new GetRSSDataTask();
-if (!isAvailable()){
+        editText = (EditText)findViewById(R.id.textView1);
+        editText.setSelection(editText.getText().length());
+        taskMethod("http://news.yahoo.com/rss/");
+        //task = new GetRSSDataTask();
+/*if (!isNetworkConnected()){
     Toast.makeText(getApplicationContext(), "Check internet connection", Toast.LENGTH_LONG).show();
     Log.d("NoNetwork", Thread.currentThread().getName());
 }
         // Start download RSS task
-        editText = (EditText)findViewById(R.id.textView1);
 
-        editText.setSelection(editText.getText().length());
+
+
         task.execute("http://news.yahoo.com/rss/");
 
         // Debug the thread name
-        Log.d("RssReader", Thread.currentThread().getName());
+        Log.d("RssReader", Thread.currentThread().getName());*/
 
     }
     public void onClick(View v) {
@@ -191,12 +194,21 @@ public static void sendError(Exception e){
 }
     private void taskMethod(String s) {
 
-        if (isAvailable()){
+
+
+        if (isNetworkConnected()){
             urlString = s;
             editText.setText(s);
 
             task = new GetRSSDataTask();
             task.execute(s);
+            try {
+                task.get(3000, TimeUnit.MILLISECONDS);
+        }
+        catch (Exception e){
+            task.cancel(true);
+            System.out.println("GRDT timeout");
+        }
             editText.setSelection(editText.getText().length());
             if (runBoolean==false){
                 Toast.makeText(getApplicationContext(), "Error, check connection and URL", Toast.LENGTH_SHORT).show();
@@ -219,8 +231,10 @@ public static void sendError(Exception e){
 
     public Boolean isAvailable() {
         if (isNetworkConnected()){
+
         try {
             Process p1 = java.lang.Runtime.getRuntime().exec("ping -c 1    www.google.com");
+
             int returnVal = p1.waitFor();
             boolean reachable = (returnVal == 0);
             if (reachable) {
@@ -244,7 +258,7 @@ public static void sendError(Exception e){
 
 
             try {
-
+                //get(4000, TimeUnit.MILLISECONDS);
                 // Debug the task thread name
                 Log.d("RssReaderdoInBackground", Thread.currentThread().getName());
                 // Create RSS reader
@@ -290,7 +304,35 @@ public static void sendError(Exception e){
            // itRRItems.setOnItemClickListener(new ListListener(result, local));
         }
 
+        public  Boolean isAvailable() {
+            if (isNetworkConnected()){
+                Thread tr=new Thread(new Runnable() {
+                    @Override
+                    public void run() {
 
+                    }
+                });
+                try {
+
+                    Process p1 = java.lang.Runtime.getRuntime().exec("ping -c 1    www.google.com");
+
+                    int returnVal = p1.waitFor();
+                    boolean reachable = (returnVal == 0);
+
+                    if (reachable) {
+                        System.out.println("Internet access");
+                        return reachable;
+                    } else {
+                        System.out.println("No Internet access");
+                    }
+
+                } catch (Exception e) {
+
+                    e.printStackTrace();
+                }
+            }
+            return false;
+        }
     }
 }
 
