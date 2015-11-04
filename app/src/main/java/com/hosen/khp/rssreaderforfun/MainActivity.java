@@ -70,7 +70,8 @@ public class MainActivity extends Activity {
     String apple = "http://images.apple.com/main/rss/hotnews/hotnews.rss";
     String Sony = "http://www.sony.net/SonyInfo/News/Press/data/pressrelease_for_top.xml";
     String oracle = "http://www.oracle.com/ocom/groups/public/@ocom/documents/webcontent/196280.xml";
-
+String[] urlList={yahoo,espn,bbc,cnn,msn,reuters,disney,mercedes,porsche,lamborghini,lexus,gm,boxoffice,billboard,microsoft,
+        directv,cisco,att,apple,Sony,oracle};
 
 
     public static void toastMessage(String s){
@@ -88,7 +89,7 @@ public class MainActivity extends Activity {
         // Set view
         setContentView(R.layout.activity_main);
 
-       //InitializeUI();
+
 
         // This code is for add banner
         AdView mAdView = (AdView) findViewById(R.id.adView);
@@ -103,7 +104,7 @@ public class MainActivity extends Activity {
 
         taskMethod(urlString);
         System.out.println(urlString);
-        //InitializeUI();
+
         //task = new GetRSSDataTask();
 /*if (!isNetworkConnected()){
     Toast.makeText(getApplicationContext(), "Check internet connection", Toast.LENGTH_LONG).show();

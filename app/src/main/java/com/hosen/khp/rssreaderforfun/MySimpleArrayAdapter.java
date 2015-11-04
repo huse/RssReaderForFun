@@ -5,12 +5,16 @@ package com.hosen.khp.rssreaderforfun;
  */
 
 import android.content.Context;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class MySimpleArrayAdapter extends ArrayAdapter<String> {
     private final Context context;
@@ -35,9 +39,12 @@ public class MySimpleArrayAdapter extends ArrayAdapter<String> {
         TextView textView = (TextView) rowView.findViewById(R.id.postTitleLabel);
         ImageView imageView = (ImageView) rowView.findViewById(R.id.postThumb);
         TextView textView2 = (TextView) rowView.findViewById(R.id.postDateLabel);
+        Calendar c = Calendar.getInstance();
+        int day = c.get(Calendar.DAY_OF_MONTH);
+        int month = c.get(Calendar.MONTH);
+        int year = c.get(Calendar.YEAR);
 
-
-        textView2.setText("Date" );
+        textView2.setText(month+"/"+day+"/"+year );
         textView.setText(values[position]);
 
 
